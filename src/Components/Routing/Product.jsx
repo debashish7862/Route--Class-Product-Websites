@@ -1,12 +1,42 @@
 
-
+import { useState,useEffect } from "react"
+import './product.css'
+import {Link}from 'react-router-dom'
 export default function Product() {
+  const[products,setProducts]=useState([])
+   
+    useEffect(()=>{
+      fetch("https://fakestoreapi.com/products")
+      .then((res)=>res.json())
+      .then((data)=>{
+        console.log(data)
+        setProducts(data)
+      })
+    },[])
   return (
-   <div>
+    <>
     <h2>Product</h2>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque aperiam, ipsam officiis aliquam, sint, reprehenderit in nam iure quidem sunt alias vero porro ab illo dolorum dicta. Tempora quam officia numquam eveniet facilis, harum quasi tenetur natus expedita inventore, recusandae, nesciunt corporis ratione. Sit aperiam nam molestias illo, esse, eos deserunt rem voluptatem accusantium ratione laudantium, maiores ipsum veritatis dolore nesciunt consequuntur eius omnis ducimus ea? Sunt nulla tempora, quod possimus odio labore quia, quam nam dolore deserunt corporis consequatur minus illo rem at totam quisquam dolorem quas. Id laboriosam ipsam necessitatibus aliquid omnis ea vel impedit in pariatur? Dolore voluptatum beatae minima officiis? Tempora sit pariatur, illo numquam reprehenderit quis itaque. Magni perspiciatis consectetur veritatis officiis. Beatae ex, facilis, eaque rerum nam sapiente sequi eveniet sint dolores, consequuntur dolore ducimus voluptates iste error aspernatur? Amet voluptate at corrupti totam quibusdam porro ea blanditiis nulla sed harum commodi itaque sint nostrum adipisci ullam rerum quis, veniam modi omnis facilis libero suscipit dolor et. Delectus possimus similique, aspernatur impedit unde veritatis deleniti iste sit aut, iure nulla provident ut corrupti vel excepturi tenetur debitis, repellat perspiciatis iusto eum libero. Et cumque enim nihil adipisci eaque quis natus itaque, provident eius quae odio deleniti ab maxime at. Sint quae consectetur ad, asperiores vel illum tempora doloremque nulla aliquid, explicabo quas similique voluptatem optio. Ipsum praesentium tenetur sapiente optio velit. Modi dolor corporis magnam earum quo, molestiae vero culpa sapiente alias temporibus incidunt autem officia veritatis provident sint quos? Nulla ullam explicabo voluptas soluta natus labore quasi fuga accusamus hic corporis maiores amet eligendi magni pariatur, vero veritatis incidunt eaque aut debitis provident eius perspiciatis placeat! Ipsa, modi ea! Cupiditate nemo enim temporibus tempore necessitatibus ab error suscipit modi dignissimos illo, quos earum ducimus ad optio molestias adipisci! Autem suscipit reprehenderit eius eligendi ad corrupti harum obcaecati, facere officiis dolor. Expedita temporibus quidem corporis soluta ipsum pariatur reprehenderit, impedit sint nihil? Reprehenderit velit labore corporis odit repellendus dicta, amet quidem tenetur non error eligendi maxime, delectus illo ab quae. Aliquam, dolorem optio. Laboriosam nihil, fugit nesciunt corrupti adipisci quo non facere eaque modi hic consectetur! Deleniti consequatur distinctio maiores fuga rerum adipisci molestiae aliquam aut ratione minima accusantium, porro aliquid? Ratione laudantium nostrum ipsa labore tempora esse odit sint consectetur distinctio facere, ducimus consequuntur repellendus a animi explicabo ea. Hic optio accusantium error harum laborum exercitationem, doloremque ex reprehenderit veritatis explicabo natus debitis minus at corporis molestias consectetur rerum libero cumque a cupiditate quos! Perferendis ipsa earum quia id, odit nihil commodi laudantium magnam quibusdam eligendi itaque magni repellendus assumenda facilis nobis ullam laboriosam quis quasi velit obcaecati! Quibusdam, adipisci quia. Ab, eum accusamus voluptatem accusantium aperiam voluptates, dicta perspiciatis quod id rerum porro, voluptate ad obcaecati cupiditate atque laudantium libero debitis sunt voluptas. Id natus repudiandae labore assumenda reprehenderit veniam consectetur facere ea esse eveniet nihil recusandae adipisci nam accusamus consequatur alias unde commodi dolorum dolorem aspernatur at, velit fugit. Nisi at itaque blanditiis vitae voluptate quia porro quisquam maiores ab amet.</p>
-
-   </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo perspiciatis minus voluptatum, magni nostrum exercitationem id? Accusantium quibusdam omnis consequuntur sed maxime, et molestiae consequatur, eos vitae quasi animi voluptas nesciunt porro minus officiis tenetur quaerat debitis. Quos pariatur optio reprehenderit. Alias ex, obcaecati id reiciendis voluptate neque ad. Officiis voluptas atque iure nostrum, itaque dicta laboriosam reiciendis delectus, ipsam esse culpa repudiandae illo quisquam maiores. Autem minus consequuntur fugit nobis nam omnis culpa a provident neque vel quam praesentium reiciendis soluta laudantium cum pariatur, optio voluptatum aliquid nihil exercitationem dolorem quasi! Maxime aperiam, nihil atque consectetur magnam repellendus tenetur totam sed sapiente consequuntur iste impedit sint nulla excepturi aliquid adipisci soluta vero laborum id accusamus similique dignissimos non ad debitis. Aut vitae veritatis fugiat iusto pariatur in eos laudantium magnam officiis debitis eligendi numquam nesciunt aliquid est officia, repudiandae doloribus nisi ut maxime deleniti laborum saepe esse. Inventore, autem nihil delectus quaerat illo quas rerum repellat, porro, repudiandae reprehenderit nemo consequatur placeat quo similique voluptatibus iusto pariatur ipsam expedita? Ut harum, officiis labore expedita, consequatur animi cupiditate reiciendis, iusto aliquam minus molestias quo minima similique. Ducimus minima voluptas mollitia praesentium tempora reprehenderit repudiandae dignissimos? Odio, aliquam eligendi? Necessitatibus, voluptatem.</p>
+    <div>
+      {
+        products.length > 0 ? <div className="main">
+          {
+            products.map((product)=>{
+              return<div className="card">
+                <img src={product.image} alt="" />
+                <h3>{product.title}</h3>
+                <p>{product.price}</p>
+                <Link to={`/productDetails/${product.id}`}><button>Product Details</button></Link>
+                </div>
+            })
+          }
+          </div> : <h2>No Products</h2>
+      }
+    
+    </div>
+    </>
   )
 }
+
+
 

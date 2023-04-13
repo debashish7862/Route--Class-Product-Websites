@@ -11,7 +11,8 @@ import{Route, Routes} from "react-router-dom"
 import Profile from './Components/Routing/Profile';
 import Product from './Components/Routing/Product'
 import Support from './Components/Routing/Support';
-
+import ProductDetails from './Components/Routing/ProductDetails';
+import PgeNotFound from './Components/Routing/PgeNotFound';
 
 
 function App() {
@@ -24,6 +25,8 @@ const {isloggedin} = useContext(AuthContext)
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/products' element={<Product/>}/>
         <Route path='/contact' element={<Support/>}/>
+        <Route path='/productdetails/:id' element={<ProductDetails/>}/>
+        <Route path='*' element={<PgeNotFound/>}/>
         </Routes>
       
 
